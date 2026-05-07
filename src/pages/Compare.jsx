@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import planetsData from '../data/planets.json';
 import PlanetModel from '../components/ui/PlanetModel';
+import AuraDropdown from '../components/ui/AuraDropdown';
 
 const Compare = () => {
-  const [planetA, setPlanetA] = useState(planetsData[2]);
-  const [planetB, setPlanetB] = useState(planetsData[3]);
+  const [planetA, setPlanetA] = useState(planetsData[2]); // Earth
+  const [planetB, setPlanetB] = useState(planetsData[3]); // Mars
 
   const getNumericValue = (str) => {
     if (typeof str !== 'string') str = str.toString();
-    return parseFloat(str.replace(/[^0-9.]/g, ''));
+    return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
   };
 
   const stats = [
@@ -20,74 +21,102 @@ const Compare = () => {
   ];
 
   return (
-    <div className="compare-v13 aura-page-padding container">
-      <header className="page-header-v13">
+    <div className="compare-v15 aura-page-padding container">
+      <header className="page-header-v15">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="page-title-v13 text-gradient">System Duel</h1>
+          <h1 className="page-title-v15 text-gradient">System Comparison</h1>
+          <p className="page-subtitle-v15">Contrast the physical signatures of two celestial bodies</p>
         </motion.div>
       </header>
 
-      <div className="compare-grid-v13">
+      <div className="compare-grid-v15">
         
-        <div className="compare-selectors-v13">
-          <div className="selector-group-v13">
-            <label>SUBJECT A</label>
-            <select 
-              value={planetA.id} 
-              onChange={(e) => setPlanetA(planetsData.find(p => p.id === e.target.value))}
-              className="glass-card"
-            >
-              {planetsData.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-            </select>
+        <div className="compare-selectors-v15">
+          <AuraDropdown 
+            label="SUBJECT ALPHA"
+            options={planetsData}
+            value={planetA.id}
+            onChange={(opt) => setPlanetA(opt)}
+            color={planetA.color}
+          />
+
+          <div className="compare-vs-v15">VS</div>
+
+          <AuraDropdown 
+            label="SUBJECT BETA"
+            options={planetsData}
+            value={planetB.id}
+            onChange={(opt) => setPlanetB(opt)}
+            color={planetB.color}
+          />
+        </div>
+
+        <div className="compare-visuals-v15">
+          <div className="duo-item-v15">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={planetA.id}
+                initial={{ opacity: 0, x: -50, scale: 0.8 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -50, scale: 0.8 }}
+                className="visual-container-v15"
+              >
+                <PlanetModel image={planetA.image} color={planetA.color} size="280px" hasRings={planetA.id === 'saturn'} />
+                <h3 className="planet-name-v15" style={{ color: planetA.color }}>{planetA.name}</h3>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <div className="compare-vs-v13 flex-center">VS</div>
-          <div className="selector-group-v13">
-            <label>SUBJECT B</label>
-            <select 
-              value={planetB.id} 
-              onChange={(e) => setPlanetB(planetsData.find(p => p.id === e.target.value))}
-              className="glass-card"
-            >
-              {planetsData.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-            </select>
+
+          <div className="duo-item-v15">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={planetB.id}
+                initial={{ opacity: 0, x: 50, scale: 0.8 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 50, scale: 0.8 }}
+                className="visual-container-v15"
+              >
+                <PlanetModel image={planetB.image} color={planetB.color} size="280px" hasRings={planetB.id === 'saturn'} />
+                <h3 className="planet-name-v15" style={{ color: planetB.color }}>{planetB.name}</h3>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
-        <div className="compare-duo-v13">
-          <motion.div key={planetA.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="duo-item-v13">
-            <PlanetModel image={planetA.image} color={planetA.color} size="240px" hasRings={planetA.id === 'saturn'} />
-            <h3 style={{ color: planetA.color }}>{planetA.name.toUpperCase()}</h3>
-          </motion.div>
-
-          <motion.div key={planetB.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="duo-item-v13">
-            <PlanetModel image={planetB.image} color={planetB.color} size="240px" hasRings={planetB.id === 'saturn'} />
-            <h3 style={{ color: planetB.color }}>{planetB.name.toUpperCase()}</h3>
-          </motion.div>
-        </div>
-
-        <div className="compare-metrics-v13 glass-card">
+        <div className="compare-metrics-v15 glass-card">
           {stats.map((s, i) => {
             const valA = getNumericValue(planetA[s.key]);
             const valB = getNumericValue(planetB[s.key]);
-            const max = Math.max(valA, valB);
+            const max = Math.max(valA, valB, 1);
             
             return (
-              <div key={s.label} className="metric-row-v13">
-                <div className="metric-header-v13">
-                  <span className="metric-name-v13">{s.label}</span>
-                </div>
-                
-                <div className="metric-bars-v13">
-                  <div className="bar-stack-v13">
-                    <div className="bar-meta-v13"><span>{planetA.name}</span><span>{planetA[s.key]}</span></div>
-                    <div className="bar-track-v13"><motion.div initial={{width:0}} animate={{width:`${(valA/max)*100}%`}} className="bar-fill-v13" style={{background:planetA.color}} /></div>
+              <div key={s.label} className="metric-row-v15">
+                <div className="metric-label-v15">{s.label}</div>
+                <div className="bars-container-v15">
+                  <div className="bar-wrapper-v15">
+                    <div className="bar-info-v15"><span>{planetA.name}</span><span>{planetA[s.key]}</span></div>
+                    <div className="bar-track-v15">
+                      <motion.div 
+                        initial={{ width: 0 }} 
+                        animate={{ width: `${(valA/max)*100}%` }} 
+                        className="bar-fill-v15" 
+                        style={{ background: planetA.color }} 
+                      />
+                    </div>
                   </div>
-                  <div className="bar-stack-v13">
-                    <div className="bar-meta-v13"><span>{planetB.name}</span><span>{planetB[s.key]}</span></div>
-                    <div className="bar-track-v13"><motion.div initial={{width:0}} animate={{width:`${(valB/max)*100}%`}} className="bar-fill-v13" style={{background:planetB.color}} /></div>
+                  <div className="bar-wrapper-v15">
+                    <div className="bar-info-v15"><span>{planetB.name}</span><span>{planetB[s.key]}</span></div>
+                    <div className="bar-track-v15">
+                      <motion.div 
+                        initial={{ width: 0 }} 
+                        animate={{ width: `${(valB/max)*100}%` }} 
+                        className="bar-fill-v15" 
+                        style={{ background: planetB.color }} 
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -97,144 +126,150 @@ const Compare = () => {
       </div>
 
       <style>{`
-        .page-header-v13 {
-          margin-bottom: 5rem;
-          text-align: center;
+        .compare-v15 {
+          padding-top: 140px;
+          padding-bottom: 100px;
         }
-        .page-title-v13 {
-          font-size: var(--fs-h1);
+        .page-header-v15 {
+          text-align: center;
+          margin-bottom: 4rem;
+        }
+        .page-title-v15 {
+          font-size: 3rem;
           font-weight: 800;
           letter-spacing: -0.04em;
+          margin-bottom: 1rem;
+        }
+        .page-subtitle-v15 {
+          color: var(--text-dim);
+          font-size: 1.1rem;
+          letter-spacing: 0.05em;
         }
 
-        .compare-selectors-v13 {
+        .compare-selectors-v15 {
           display: flex;
-          align-items: flex-end;
+          align-items: center;
           justify-content: center;
-          gap: 2rem;
+          gap: 3rem;
           margin-bottom: 5rem;
         }
-        .selector-group-v13 {
+        .selector-group-v15 {
           display: flex;
           flex-direction: column;
           gap: 0.75rem;
-          flex: 1;
-          max-width: 260px;
+          min-width: 280px;
         }
-        .selector-group-v13 label {
-          font-size: 0.65rem;
+        .selector-group-v15 label {
+          font-size: 0.7rem;
           font-weight: 800;
           color: var(--text-dim);
-          letter-spacing: 0.15em;
+          letter-spacing: 0.2em;
         }
-        .selector-group-v13 select {
+        .aura-select-v15 {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 1rem 1.5rem;
-          border-radius: 12px;
+          border-radius: 100px;
           color: white;
           font-weight: 700;
           outline: none;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          cursor: pointer;
+          transition: all 0.3s;
+          appearance: none;
         }
-        .selector-group-v13 select option {
-          background: #0A0A0A;
-          color: white;
+        .aura-select-v15:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
         }
-        .compare-vs-v13 {
-          height: 48px;
+        .compare-vs-v15 {
+          font-size: 1.2rem;
           font-weight: 900;
           color: var(--accent);
-          font-size: 0.8rem;
+          opacity: 0.6;
+          margin-top: 1.5rem;
         }
 
-        .compare-duo-v13 {
-          display: flex;
-          justify-content: space-around;
+        .compare-visuals-v15 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
           margin-bottom: 6rem;
         }
-        .duo-item-v13 {
+        .duo-item-v15 {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .visual-container-v15 {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 1.5rem;
+          gap: 2rem;
         }
-        .duo-item-v13 h3 {
-          font-size: 1.25rem;
+        .planet-name-v15 {
+          font-size: 1.75rem;
           font-weight: 800;
           letter-spacing: 0.1em;
+          text-transform: uppercase;
         }
 
-        .compare-metrics-v13 {
-          padding: 3rem;
-          border-radius: 24px;
-          max-width: 900px;
+        .compare-metrics-v15 {
+          padding: 4rem;
+          border-radius: 32px;
+          max-width: 1000px;
           margin: 0 auto;
         }
-        .metric-row-v13 {
-          margin-bottom: 3rem;
+        .metric-row-v15 {
+          margin-bottom: 4rem;
         }
-        .metric-row-v13:last-child { margin-bottom: 0; }
+        .metric-row-v15:last-child { margin-bottom: 0; }
         
-        .metric-header-v13 {
-          margin-bottom: 1.5rem;
+        .metric-label-v15 {
           text-align: center;
-        }
-        .metric-name-v13 {
-          font-size: 0.7rem;
+          font-size: 0.75rem;
           font-weight: 800;
-          letter-spacing: 0.2em;
           color: var(--text-dim);
+          letter-spacing: 0.25em;
+          margin-bottom: 2rem;
           border-bottom: 1px solid rgba(255,255,255,0.06);
-          padding-bottom: 0.4rem;
+          padding-bottom: 0.5rem;
         }
-
-        .metric-bars-v13 {
+        .bars-container-v15 {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 3rem;
+          gap: 4rem;
         }
-        .bar-meta-v13 {
+        .bar-info-v15 {
           display: flex;
           justify-content: space-between;
-          font-size: 0.8rem;
+          font-size: 0.9rem;
           font-weight: 700;
-          margin-bottom: 0.6rem;
+          margin-bottom: 0.75rem;
         }
-        .bar-track-v13 {
-          height: 4px;
+        .bar-track-v15 {
+          height: 6px;
           background: rgba(255,255,255,0.03);
-          border-radius: 2px;
+          border-radius: 100px;
           overflow: hidden;
         }
-        .bar-fill-v13 {
+        .bar-fill-v15 {
           height: 100%;
-          border-radius: 2px;
+          border-radius: 100px;
         }
 
-        @media (max-width: 768px) {
-          .compare-v13 {
-            padding-top: 120px;
-          }
-          .compare-selectors-v13 {
+        @media (max-width: 900px) {
+          .compare-selectors-v15 {
             flex-direction: column;
-            align-items: center;
             gap: 1.5rem;
           }
-          .selector-group-v13 {
-            max-width: 100%;
+          .compare-vs-v15 { display: none; }
+          .selector-group-v15 { min-width: 100%; }
+          
+          .compare-visuals-v15 {
+            grid-template-columns: 1fr;
+            gap: 5rem;
           }
-          .compare-vs-v13 {
-            height: auto;
-            padding: 1rem 0;
-          }
-          .compare-duo-v13 {
-            flex-direction: column;
-            gap: 4rem;
-          }
-          .compare-metrics-v13 {
-            padding: 1.5rem;
-          }
-          .metric-bars-v13 {
+          .bars-container-v15 {
             grid-template-columns: 1fr;
             gap: 2rem;
           }

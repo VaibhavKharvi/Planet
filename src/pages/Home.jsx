@@ -133,12 +133,12 @@ const Home = () => {
 
         @media (max-width: 1100px) {
           .home-v15 { 
-            padding: 120px 1rem 80px; 
+            padding: 120px 1.5rem 80px; 
             text-align: center;
           }
           .hero-split-v15 { 
             grid-template-columns: 1fr; 
-            gap: 4rem; 
+            gap: 3rem; 
           }
           .hero-content-v15 { 
             align-items: center; 
@@ -146,6 +146,11 @@ const Home = () => {
           }
           .hero-title-v15 { 
             font-size: 2.75rem; 
+            margin-bottom: 1.5rem;
+          }
+          .hero-desc-v15 {
+            margin-bottom: 2.5rem;
+            max-width: 500px;
           }
           .hero-visual-v15 { 
             order: 1; 
@@ -153,10 +158,24 @@ const Home = () => {
           .hero-actions-v15 {
             flex-direction: column;
             width: 100%;
-            gap: 1rem;
+            max-width: 320px;
+            gap: 0.75rem;
           }
           .btn-aura-primary, .btn-aura-secondary {
             width: 100%;
+            padding: 1rem;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .home-v15 {
+            padding-top: 100px;
+          }
+          .hero-title-v15 {
+            font-size: 2.25rem;
+          }
+          .visual-wrapper-v15 {
+            transform: scale(0.85); /* Slightly smaller planet for small screens */
           }
         }
       `}</style>

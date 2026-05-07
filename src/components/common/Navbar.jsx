@@ -95,27 +95,35 @@ const Navbar = () => {
 
         @media (max-width: 768px) {
           .aura-nav-wrapper {
-            top: 1rem;
-            padding: 0 1rem;
+            top: 0.75rem;
+            padding: 0 0.75rem;
           }
           .aura-nav {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.75rem;
             justify-content: space-between;
+            min-height: 50px;
           }
           .solaris-logo-v16 {
-            display: flex; /* Restore logo on small screens */
+            display: flex;
+            gap: 0.5rem;
           }
           .logo-text-v16 {
-            display: none; /* Hide logo text but keep the icon to save space */
+            display: block; /* Keep text on mobile but smaller */
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+          }
+          .logo-v16 {
+            width: 18px;
+            height: 18px;
           }
           .aura-nav-links {
-            gap: 0.25rem;
+            gap: 0.15rem;
             width: auto;
-            justify-content: flex-end;
           }
           .aura-nav-link {
-            padding: 0.6rem 0.6rem;
-            font-size: 0.65rem;
+            padding: 0.5rem 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
           }
         }
       `}</style>

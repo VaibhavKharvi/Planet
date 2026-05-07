@@ -257,12 +257,12 @@ const Compare = () => {
           border-radius: 100px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
           .compare-v15 {
             padding-top: 100px;
           }
           .page-title-v15 {
-            font-size: 2.25rem;
+            font-size: 2.75rem;
           }
           .compare-selectors-v15 {
             flex-direction: column;
@@ -270,7 +270,6 @@ const Compare = () => {
             margin-bottom: 3rem;
           }
           .compare-vs-v15 { display: none; }
-          .selector-group-v15 { min-width: 100%; }
           
           .compare-visuals-v15 {
             grid-template-columns: 1fr;
@@ -282,15 +281,15 @@ const Compare = () => {
           }
 
           .compare-metrics-v15 {
-            padding: 1.5rem;
-            border-radius: 20px;
+            padding: 2.5rem;
+            border-radius: 24px;
           }
           .metric-row-v15 {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
           }
           .bars-container-v15 {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
           }
         }
 
@@ -299,13 +298,19 @@ const Compare = () => {
             padding-top: 80px;
           }
           .page-title-v15 {
-            font-size: 1.75rem;
+            font-size: 2.25rem;
           }
           .compare-metrics-v15 {
-            padding: 1.25rem;
+            padding: 1.5rem;
           }
           .visual-container-v15 {
             transform: scale(0.8);
+          }
+          .metric-row-v15 {
+            margin-bottom: 2.5rem;
+          }
+          .bars-container-v15 {
+            gap: 1.5rem;
           }
         }
       `}</style>

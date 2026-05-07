@@ -128,8 +128,30 @@ const PlanetGallery = () => {
           color: var(--accent);
         }
 
-        @media (max-width: 768px) {
-          .page-title-v13 { font-size: 2.5rem; }
+        @media (max-width: 1100px) {
+          .gallery-v13 {
+            padding-top: 100px;
+          }
+          .page-header-v13 {
+            margin-bottom: 3rem;
+            text-align: center;
+          }
+          .page-title-v13 {
+            font-size: 2.75rem;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .gallery-v13 {
+            padding-top: 80px;
+          }
+          .page-title-v13 {
+            font-size: 2.25rem;
+          }
+          .gallery-grid-v13 {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
         }
       `}</style>
     </div>

@@ -131,55 +131,61 @@ const Home = () => {
           filter: blur(40px);
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1100px) {
           .home-v15 { 
             padding: 100px 1.5rem 60px; 
             text-align: center;
+            display: block; /* Remove flex centering to allow natural flow */
           }
           .hero-split-v15 { 
-            grid-template-columns: 1fr; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 2.5rem; 
           }
           .hero-content-v15 { 
             align-items: center; 
-            order: 1; /* Text first on mobile */
+            order: 1; 
           }
           .hero-title-v15 { 
             font-size: 2.5rem; 
             margin-bottom: 1rem;
           }
           .hero-desc-v15 {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             max-width: 500px;
-            font-size: 1rem;
+            font-size: 1.05rem;
           }
           .hero-visual-v15 { 
-            order: 2; /* Image second on mobile */
+            order: 2; 
           }
           .visual-wrapper-v15 {
-            transform: scale(0.8);
+            transform: scale(0.9);
           }
           .hero-actions-v15 {
             flex-direction: column;
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             gap: 0.75rem;
           }
           .btn-aura-primary, .btn-aura-secondary {
             width: 100%;
-            padding: 0.9rem;
+            padding: 1.1rem;
           }
         }
 
         @media (max-width: 600px) {
           .home-v15 {
-            padding-top: 80px;
+            padding-top: 110px; /* Account for navbar */
           }
           .hero-title-v15 {
-            font-size: 2rem;
+            font-size: 2.25rem;
+          }
+          .hero-desc-v15 {
+            font-size: 0.95rem;
           }
           .visual-wrapper-v15 {
-            transform: scale(0.65); /* Significantly smaller on small phones */
+            transform: scale(0.8);
           }
         }
       `}</style>

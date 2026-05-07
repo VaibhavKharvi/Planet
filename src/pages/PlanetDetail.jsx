@@ -136,30 +136,53 @@ const PlanetDetail = () => {
           color: var(--text);
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
           .detail-v13 {
-            padding-top: 120px;
+            padding-top: 100px;
+            padding-bottom: 60px;
           }
           .detail-grid-v13 {
             grid-template-columns: 1fr;
             text-align: center;
-            gap: 4rem;
+            gap: 3rem;
           }
           .detail-info-v13 {
-            order: 2;
+            order: 1; /* Content first */
           }
           .detail-visual-v13 {
-            order: 1;
+            order: 2; /* Image second */
           }
           .detail-desc-v13 {
-            margin: 0 auto 3.5rem;
+            margin: 0 auto 3rem;
+            max-width: 600px;
           }
           .detail-metrics-v13 {
             grid-template-columns: 1fr;
             text-align: left;
+            max-width: 400px;
+            margin: 0 auto 3rem;
           }
           .detail-title-v13 {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+          }
+          .viz-orb-v13 {
+            transform: scale(0.85);
+          }
+        }
+
+        @media (max-width: 600px) {
+          .detail-v13 {
+            padding-top: 80px;
+          }
+          .detail-title-v13 {
+            font-size: 2.75rem;
+          }
+          .viz-orb-v13 {
+            transform: scale(0.7);
+          }
+          .detail-metrics-v13 {
+            max-width: 100%;
           }
         }
       `}</style>

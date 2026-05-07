@@ -33,9 +33,9 @@ const Compare = () => {
       </header>
 
       <div className="compare-grid-v15">
-        
+
         <div className="compare-selectors-v15">
-          <AuraDropdown 
+          <AuraDropdown
             label="SUBJECT ALPHA"
             options={planetsData}
             value={planetA.id}
@@ -45,7 +45,7 @@ const Compare = () => {
 
           <div className="compare-vs-v15">VS</div>
 
-          <AuraDropdown 
+          <AuraDropdown
             label="SUBJECT BETA"
             options={planetsData}
             value={planetB.id}
@@ -57,7 +57,7 @@ const Compare = () => {
         <div className="compare-visuals-v15">
           <div className="duo-item-v15">
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={planetA.id}
                 initial={{ opacity: 0, x: -50, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -72,7 +72,7 @@ const Compare = () => {
 
           <div className="duo-item-v15">
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={planetB.id}
                 initial={{ opacity: 0, x: 50, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -91,7 +91,7 @@ const Compare = () => {
             const valA = getNumericValue(planetA[s.key]);
             const valB = getNumericValue(planetB[s.key]);
             const max = Math.max(valA, valB, 1);
-            
+
             return (
               <div key={s.label} className="metric-row-v15">
                 <div className="metric-label-v15">{s.label}</div>
@@ -99,22 +99,22 @@ const Compare = () => {
                   <div className="bar-wrapper-v15">
                     <div className="bar-info-v15"><span>{planetA.name}</span><span>{planetA[s.key]}</span></div>
                     <div className="bar-track-v15">
-                      <motion.div 
-                        initial={{ width: 0 }} 
-                        animate={{ width: `${(valA/max)*100}%` }} 
-                        className="bar-fill-v15" 
-                        style={{ background: planetA.color }} 
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(valA / max) * 100}%` }}
+                        className="bar-fill-v15"
+                        style={{ background: planetA.color }}
                       />
                     </div>
                   </div>
                   <div className="bar-wrapper-v15">
                     <div className="bar-info-v15"><span>{planetB.name}</span><span>{planetB[s.key]}</span></div>
                     <div className="bar-track-v15">
-                      <motion.div 
-                        initial={{ width: 0 }} 
-                        animate={{ width: `${(valB/max)*100}%` }} 
-                        className="bar-fill-v15" 
-                        style={{ background: planetB.color }} 
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(valB / max) * 100}%` }}
+                        className="bar-fill-v15"
+                        style={{ background: planetB.color }}
                       />
                     </div>
                   </div>

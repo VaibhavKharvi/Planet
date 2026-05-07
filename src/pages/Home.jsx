@@ -133,15 +133,15 @@ const Home = () => {
 
         @media (max-width: 1100px) {
           .home-v15 { 
-            padding: 100px 1.5rem 60px; 
+            padding: 140px 1.5rem 60px; /* Increased padding to clear navbar */
             text-align: center;
-            display: block; /* Remove flex centering to allow natural flow */
+            display: block;
           }
           .hero-split-v15 { 
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2.5rem; 
+            gap: 2rem; 
           }
           .hero-content-v15 { 
             align-items: center; 
@@ -150,42 +150,41 @@ const Home = () => {
           .hero-title-v15 { 
             font-size: 2.5rem; 
             margin-bottom: 1rem;
+            line-height: 1.2;
           }
           .hero-desc-v15 {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 500px;
-            font-size: 1.05rem;
+            font-size: 1rem;
           }
           .hero-visual-v15 { 
             order: 2; 
           }
           .visual-wrapper-v15 {
-            transform: scale(0.9);
+            transform: scale(0.85);
           }
           .hero-actions-v15 {
             flex-direction: column;
             width: 100%;
-            max-width: 320px;
+            max-width: 300px;
             gap: 0.75rem;
+            margin-bottom: 2rem;
           }
           .btn-aura-primary, .btn-aura-secondary {
             width: 100%;
-            padding: 1.1rem;
+            padding: 1rem;
           }
         }
 
         @media (max-width: 600px) {
           .home-v15 {
-            padding-top: 110px; /* Account for navbar */
+            padding-top: 130px; /* Refined for small phones */
           }
           .hero-title-v15 {
-            font-size: 2.25rem;
-          }
-          .hero-desc-v15 {
-            font-size: 0.95rem;
+            font-size: 2.1rem;
           }
           .visual-wrapper-v15 {
-            transform: scale(0.8);
+            transform: scale(0.75);
           }
         }
       `}</style>

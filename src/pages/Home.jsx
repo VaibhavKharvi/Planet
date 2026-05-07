@@ -131,51 +131,55 @@ const Home = () => {
           filter: blur(40px);
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 900px) {
           .home-v15 { 
-            padding: 120px 1.5rem 80px; 
+            padding: 100px 1.5rem 60px; 
             text-align: center;
           }
           .hero-split-v15 { 
             grid-template-columns: 1fr; 
-            gap: 3rem; 
+            gap: 2.5rem; 
           }
           .hero-content-v15 { 
             align-items: center; 
-            order: 2; 
+            order: 1; /* Text first on mobile */
           }
           .hero-title-v15 { 
-            font-size: 2.75rem; 
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem; 
+            margin-bottom: 1rem;
           }
           .hero-desc-v15 {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 500px;
+            font-size: 1rem;
           }
           .hero-visual-v15 { 
-            order: 1; 
+            order: 2; /* Image second on mobile */
+          }
+          .visual-wrapper-v15 {
+            transform: scale(0.8);
           }
           .hero-actions-v15 {
             flex-direction: column;
             width: 100%;
-            max-width: 320px;
+            max-width: 300px;
             gap: 0.75rem;
           }
           .btn-aura-primary, .btn-aura-secondary {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
           }
         }
 
         @media (max-width: 600px) {
           .home-v15 {
-            padding-top: 100px;
+            padding-top: 80px;
           }
           .hero-title-v15 {
-            font-size: 2.25rem;
+            font-size: 2rem;
           }
           .visual-wrapper-v15 {
-            transform: scale(0.85); /* Slightly smaller planet for small screens */
+            transform: scale(0.65); /* Significantly smaller on small phones */
           }
         }
       `}</style>

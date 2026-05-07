@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #030303;
+  --surface: rgba(255, 255, 255, 0.02);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #F5F5F5;
+  --text-dim: #A1A1AA;
+  --accent: #6366F1;
+  --font-main: 'Inter', sans-serif;
+  --container-width: 1100px;
+  
+  /* Standardized Font Scales */
+  --fs-display: 4rem;
+  --fs-h1: 3.5rem;
+  --fs-h2: 2.5rem;
+  --fs-h3: 1.5rem;
+  --fs-body: 1rem;
+  --fs-label: 0.7rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-gradient {
+  background: linear-gradient(to bottom, #FFFFFF 0%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+/* Common Page Structure */
+.aura-page-padding {
+  padding: 160px 0 100px;
+}
+
+.section-label {
+  font-size: var(--fs-label);
+  font-weight: 800;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
